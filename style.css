@@ -1,0 +1,11 @@
+.newUser{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 30px;
+}
+
+
+.alignTextCenter{
+  text-align: center;
+}
