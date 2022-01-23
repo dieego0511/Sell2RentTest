@@ -5,7 +5,12 @@
   margin: 30px;
 }
 
-
 .alignTextCenter{
   text-align: center;
+}
+
+.hidde-text{
+  display: none;
+  font-size: 12px;
+  color:  red;
 }

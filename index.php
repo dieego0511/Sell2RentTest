@@ -35,17 +35,17 @@ require_once 'helpers.php';
   <body>
     <!-- Button trigger modal -->
     <div class="newUser">
-      <button type="button" class="btn btn-outline-success " data-toggle="modal" data-target="#newUserModal">Create new user</button>
+      <button type="button" class="btn btn-outline-success " data-toggle="modal" data-target="#newUserModal" rel='noopener noreferrer'>Create new user</button>
     </div>
     
 
-    <div class="row justify-content-center"  style="max-width: 70%;margin:  0 10% 0 10%;">
+    <div class="row justify-content-center"  style="max-width: 70%;margin:  0 auto 0 auto;">
       <table class="table table-striped">
         <thead class="thead-light">
           <tr>
             <th class="alignTextCenter" >Name</th>
             <th class="alignTextCenter">Last Name</th>
-            <th class="alignTextCenter">Date</th>
+            <th class="alignTextCenter">Register Date</th>
             <th class="alignTextCenter" colspan="2">Options</th>
           </tr>
         </thead>
@@ -53,17 +53,18 @@ require_once 'helpers.php';
         <?php
         foreach ($_SESSION['users'] as $key => $user ) {
           echo "<tr>
-              <th  id='userName".$key."' class='alignTextCenter'>".$user['name']."</th>
-              <th  id='userLastName".$key."' class='alignTextCenter'>".$user['lastName']."</th>
-              <th class='alignTextCenter''>".$user['dateTime']."</th>
-              <th class='alignTextCenter' colspan='2'>
-                <button type='button' data-toggle='modal' data-target='#editUserModal' class='btn btn-info' onclick='editUser(".$key.")'>Edit</button>
-                <a href='logica.php?delete=".$key."' class='btn btn-danger'>Delete</a>
-              </th>";
+                  <th  id='userName".$key."' class='alignTextCenter'>".$user['name']."</th>
+                  <th  id='userLastName".$key."' class='alignTextCenter'>".$user['lastName']."</th>
+                  <th class='alignTextCenter''>".$user['dateTime']."</th>
+                  <th class='alignTextCenter' colspan='2'>
+                    <button type='button' data-toggle='modal' data-target='#editUserModal' class='btn btn-info' onclick='editUser(".$key.")' rel='noopener noreferrer'>Edit</button>
+                    <a href='logica.php?delete=".$key."' class='btn btn-danger' rel='noopener noreferrer'>Delete</a>
+                  </th>
+                </tr>";
         }
             
         ?>
-          </tr>
+          
         </tbody>
       </table>
     </div>
@@ -89,13 +90,22 @@ require_once 'helpers.php';
               <form  action="logica.php" method="POST">
                 <div class=" form-group">
                   <label>Name</label>
-                  <input type="text" class="form-control" name="name" placeholder="Enter your name"><br>
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name" onchange="userValidation(1)" ><br>
+                  <div class="hidde-text" id="nameLetter">
+                    <p>The text should only have letters  and at lest one letter</p>
+                  </div>
+                  
+                  
                 </div>
 
                 <div class=" form-group">
                   <label>Last Name</label>
-                  <input type="text" class="form-control" name="lastName" placeholder="Enter your  last name"><br>
+                  <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Enter your  last name" onchange="userValidation(2)" ><br>
                 </div>
+                <div class="hidde-text" id="lastNameLetter">
+                    <p>The text should only have letters and at lest one letter</p>
+                </div>
+                
 
                   <input type="hidden" name="date" value="<?php  echo fechaActual(); ?>"><br>
 
@@ -103,7 +113,7 @@ require_once 'helpers.php';
 
                 
                 <div class=" form-group text-center">
-                  <button  type="submit" class="btn btn-primary"  name="save">SAVE</button>
+                  <button  type="submit" class="btn btn-success"  name="save">SAVE</button>
                 </div>
                 
               </form>
@@ -133,12 +143,18 @@ require_once 'helpers.php';
               <form  action="logica.php" method="POST">
                 <div class=" form-group">
                   <label>Name</label>
-                  <input type="text" class="form-control" name="nameEdit" id="nameEdit"><br>
+                  <input type="text" class="form-control" name="nameEdit" id="nameEdit" onchange="userValidation(3)" ><br>
+                </div>
+                <div class="hidde-text" id="nameEditLetter">
+                    <p>The text should only have letters and at lest one letter</p>
                 </div>
 
                 <div class=" form-group">
                   <label>Last Name</label>
-                  <input type="text" class="form-control" name="lastNameEdit" id="lastNameEdit"><br>
+                  <input type="text" class="form-control" name="lastNameEdit" id="lastNameEdit" onchange="userValidation(4)" ><br>
+                </div>
+                <div class="hidde-text" id="lastNEditLetter">
+                    <p>The text should only have letters and at lest one letter</p>
                 </div>
 
                   <input type="hidden" name="idUserEdit" id="idUserEdit">
