@@ -50,7 +50,7 @@ require_once 'helpers.php';
           </tr>
         </thead>
         <tbody>
-        <?php
+        <?
         foreach ($_SESSION['users'] as $key => $user ) {
           echo "<tr>
                   <th  id='userName".$key."' class='alignTextCenter'>".$user['name']."</th>
